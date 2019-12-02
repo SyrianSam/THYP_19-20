@@ -53,8 +53,8 @@
               <li class="menu-item"><a class="smothscroll" href="#about" title="About"><i class="fa fa-user"></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#resume" title="Resume"><i class="fa fa-file-text-o"></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#work" title="Works"><i class="fa fa-briefcase"></i></a></li>
-              <li class="menu-item"><a href="statetu.html" title="Statistique"><i class="fa fa-bar-chart"></i></a></li>
-              <li class="menu-item"><a href="carto.html" title="Cartographique"><i class="fa fa-map-marker"></i></a></li>
+              <li class="menu-item" onclick="Load('#containerDiv','statetu.html', '#containerDiv' );"><i class="fa fa-bar-chart"></i></a></li>
+              <li class="menu-item" onclick="Load('#containerDiv','carto.html', '#containerDiv' );"><i class="fa fa-map-marker"></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"></i></a></li>
               <li class="menu-item"><a class="smothscroll" style="color:black;"> <select id="etudiant" title="recherche" onchange="remplirdata()"></a></select></li>
             </ul>
@@ -73,6 +73,8 @@
     <!--/ #topbar-inner -->
   </div>
   <!--/ #section-topbar -->
+
+  <div id="containerDiv">
 
   <div id="headerwrap">
 
@@ -478,7 +480,7 @@
       </div>
     </div>
   </div>
-
+</div><!--containerDiv-->
   <!-- JavaScript Libraries -->
   <script src="js/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
@@ -488,6 +490,7 @@
   <script src="js/d3-dsv.min.js"></script>
   <script src="js/d3-fetch.min.js"></script>
   <script src="js/d3-org.min.js"></script>
+  <script src="js/Loader.js"></script>
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
