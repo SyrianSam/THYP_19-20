@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Cartographie</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+
+	<style>
+
+		
+		#map {
+			width: 1350px;
+			height: 600px;
+		}
+	</style>
+
+	
+</head>
+<body>
+		</br>
+<div style="background-color: #F5FAF8">
+		</br>
+    <h2 style="justify-content: center;display: flex; font-weight: 500;">Pays visités par: <div style="color: #36F93F; margin-left: 8px; ">Sami KAROUT </div></h2>
+              
+	<div class = "legend" style="display:flex;justify-content: safe;padding:0 10px 10px; font-size: 12px; box-sizing: border-box; font-weight: 500; background-color:#F5FAF8">
+		<div class="item pas-besoin" style="border-left:30px solid #FDFD03; line-height: 30px;padding:0 10px 0 4px;display:block;box-sizing: border-box;font-size: 12px;;"> Pays visité 1 fois</div>
+	
+		<div class="item pas-besoin" style="border-left:30px solid #FD9303; line-height: 30px;padding:0 10px 0 4px;display:block;box-sizing: border-box;font-size: 12px;;"> Pays visité 2 fois</div>
+	
+		<div class="item pas-besoin" style="border-left:30px solid #FA230A; line-height: 30px;padding:0 10px 0 4px;display:block;box-sizing: border-box;font-size: 12px;;"> Pays visité +3 fois</div>
+	</div>
+
+
+    <div id="map" style="position: center fixed;"></div>
+
+<script>
+	var country = L.layerGroup();
+
+	L.marker([33.84394080, 9.40013800]).bindPopup('This is Tunisia').addTo(country),
+	L.marker([46.60335400, 1.88833350]).bindPopup('This is France').addTo(country),
+	L.marker([52.50016980, 5.74808210]).bindPopup('This is Pays-Bas').addTo(country),
+	L.marker([52.21593300, 19.13442200]).bindPopup('This is Poland').addTo(country),
+	L.marker([51.08341960, 10.42344690]).bindPopup('This is DeutshLand').addTo(country),
+
+	L.marker([50.64028090, 4.66671450]).bindPopup('This is Bélgique.').addTo(country);
+
+
+
+
+	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
+	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+
+	var map = L.map('map', {
+		center: [46.60335400, 1.88833350],
+		zoom: 5,
+		layers: [grayscale, country]
+	});
+
+	//Merci à http://yellowthailand.com/leafletgeo.html
+
+	var circleP = L.circle([52.21, 19.13], {
+	color: '#FDFA03',
+	fillColor: '#F7F6AF',
+	fillOpacity: 0.5,
+	radius: 110000
+    }).addTo(map);
+
+    var circleG = L.circle([51.08341960, 10.42344690], {
+	color: '#FDFA03',
+	fillColor: '#F7F6AF',
+	fillOpacity: 0.5,
+	radius: 110000
+    }).addTo(map);
+
+    
+
+
+    var circleF = L.circle([33.84394080, 9.40013800], {
+	color: 'red',
+	fillColor: '#f03',
+	fillOpacity: 0.5,
+	radius: 110000
+    }).addTo(map);
+
+     var circleT = L.circle([46.60335400, 1.88833350], {
+	color: 'red',
+	fillColor: '#f03',
+	fillOpacity: 0.5,
+	radius: 110000
+    }).addTo(map);
+
+      var circleb = L.circle([50.64028090, 4.66671450], {
+	color: '#EEA41B',
+	fillColor: '#F0D291',
+	fillOpacity: 0.5,
+	radius: 90000
+    }).addTo(map);
+
+
+      var circleh = L.circle([52.50016980, 5.74808210], {
+	color: '#EEA41B',
+	fillColor: '#F0D291',
+	fillOpacity: 0.5,
+	radius: 90000
+    }).addTo(map);
+
+
+
+
+	var baseLayers = {
+		"Grayscale": grayscale,
+		"Streets": streets
+	};
+
+	var overlays = {
+		"Country":country
+	};
+
+	L.control.layers(baseLayers, overlays).addTo(map);
+
+
+ /*function getColor(d) {
+           return d === 'visité >3 '  ? "red" :
+                  d === 'visité 2 fois'  ? "#EEA41B" :
+                  d === 'visité une fois' ? "#FDFA03" :
+                  
+                               "#ff7f00";
+       }
+
+function style(feature) {
+           return {
+               weight: 1.5,
+               opacity: 1,
+               fillOpacity: 1,
+               radius: 6,
+               fillColor: getColor(feature.properties.TypeOfIssue),
+               color: "grey"
+
+           };
+       }
+
+var legend = L.control({position: 'bottomleft'});
+       legend.onAdd = function (map) {
+
+       var div = L.DomUtil.create('div', 'info legend');
+       labels = ['<fieldset ="white"> <legend>Les pays visités</legend><p>visité >3 =  ( Red ) </p>  <p>visité 2 fois = (Orange)</p> <p>visité une fois = (Yellow) </p>   <p>non visité =   (Gray) </p></fieldset>'],
+       categories = [];
+
+       for (var i = 0; i < categories.length; i++) {
+
+               div.innerHTML += 
+               labels.push(
+                   '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+               (categories[i] ? categories[i] : '+'));
+
+           }
+           div.innerHTML = labels.join('<br>');
+       return div;
+       };
+       legend.addTo(map);*/
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html>
+<head>
+  <script src="https://cdn.anychart.com/releases/builtin-generator/js/anychart-base.min.js?hcode=c11e6e3cfefb406e8ce8d99fa8368d33"></script>
+  <script src="https://cdn.anychart.com/releases/builtin-generator/js/anychart-ui.min.js?hcode=c11e6e3cfefb406e8ce8d99fa8368d33"></script>
+  <script src="https://cdn.anychart.com/releases/builtin-generator/js/anychart-exports.min.js?hcode=c11e6e3cfefb406e8ce8d99fa8368d33"></script>
+  <link href="https://cdn.anychart.com/releases/builtin-generator/css/anychart-ui.min.css?hcode=c11e6e3cfefb406e8ce8d99fa8368d33" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/builtin-generator/fonts/css/anychart-font.min.css?hcode=c11e6e3cfefb406e8ce8d99fa8368d33" type="text/css" rel="stylesheet">
+  <style type="text/css">
+
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  
+</style>
+</head>
+<body>
+  
+  <div id="container"></div>
+  
+
+  <script>
+    // thanks to https://docs.anychart.com/Quick_Start/Quick_Start
+
+    anychart.onDocumentReady(function() {
+      //  anychart.data.loadCsvFile('https://docs.google.com/spreadsheets/d/1LH0v_f74AmrgsRRLJUcd2dMbS7SXzj6RKLMQu4liPLs/edit#gid=1598524392', function (data) {// create stock chart
+        //chart = anychart.stock();
+
+        
+        //var plot = chart.plot(0);
+  
+        //var column = plot.column(data);
+        
+
+        
+        //chart.selectRange('M', 'DH1');
+
+        
+        //chart.container('container');
+        
+        //chart.draw();
+
+      
+   // });
+
+      
+      var chartData = {
+        title: 'Statistique des besoins',
+        header: ['#', 'Pas besoin', "Besoin d'approfondissement", 'Besoin urgent', 'je suis expert(e)'],
+        rows: [
+          ['git', 4, 10, 4, 8],
+          ['Android', 5, 15, 4, 2],
+          ['un service de type « e-commerce »',11 , 12, 2,1 ],
+          ['Savoir travailler avec le RSS',10 , 9, 6,1 ]
+        ]
+      };
+
+      
+      var chart = anychart.column();
+
+     
+      chart.data(chartData);
+
+      
+      chart.animation(true);
+
+      chart.yAxis().title("Nombre d'etudiants");
+
+      chart.labels()
+        .enabled(true)
+        .position('center-top')
+        .anchor('center-bottom')
+       ;
+      chart.hovered().labels(false);
+
+     
+      chart.legend()
+        .enabled(true)
+        .fontSize(13)
+        .padding([0, 0, 20, 0]);
+
+      
+      chart.interactivity().hoverMode('single');
+
+      chart.tooltip()
+        .positionMode('point')
+        .position('center-top')
+        .anchor('center-bottom')
+        .offsetX(0)
+        .offsetY(5)
+        .titleFormat('{%X}')
+        ;
+
+      
+      chart.container('container');
+
+   
+      chart.draw();
+    });
+  
+</script>
+<script type="text/javascript">
+  
+
+  
+</script>
+</body>
+</html>
+                
